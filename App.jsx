@@ -6,38 +6,31 @@
  */
 
 import { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, TextInput } from "react-native";
 import ExStyles from './styles'
 
 
 function App() {
   
-  const [name , setName] = useState("Abhishek");
+  const [email , setEmail] = useState("");
   const changeName = ()=>{
     setName("Hunterr");
   }
 
   return (
     <View>
-      <Text style={ExStyles.textBox}> Hello RN</Text>
-      <Text style={styles.textBox}> I am {name}</Text>\
-
-      <Button onPress={changeName}  title="Press here"/>
+      <Text style={{fontSize : 35, color: 'blue', textAlign : 'center'}}>Login</Text>
+      <Text>Email : {email} </Text>
+      <TextInput style={styles.holder} placeholder="Email" onChangeText={(text) => setEmail(text)} value={email} />
+      <TextInput style={styles.holder} placeholder="Password" />
+      <Button onPress={() => setEmail("")} title="Clear" />
     </View>
   );
     
 }
 
 const styles = StyleSheet.create({
-  textBox : {
-    fontSize : 35,
-    color : 'grey',
-    backgroundColor : 'lightblue',
-    margin : 20,
-    borderRadius : 10,
-    padding : 10,
-
-  }
+  holder : {fontSize: 18, color:'blue', borderWidth:2, borderColor: 'lightblue', borderRadius:10, margin:10, padding:5},
 })
 
 
