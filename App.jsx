@@ -69,28 +69,30 @@ function App() {
 
   return (
     <View>
-      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>List with map function(Custom)</Text>
-      <ScrollView style={{marginBottom:30}}>
+      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>Grid with Dynamic data</Text>
+      <View style={{flex:1, flexDirection:'row',flexWrap:'wrap'}}>
       {
-        users.map((item) =><Text style={styles.item} ke > {item.name}</Text>)
+        users.map((item) => <Text key={item.id} style={styles.text}>{item.name}</Text>)
       }
-
-      </ScrollView>
       
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  item : {
-    fontSize : 30,
-    padding : 5,
-    marginBottom : 10,
-    backgroundColor : 'grey',
-    color : 'lightblue',
-    borderWidth : 1,
-    borderColor : 'skyblue'
-  },
+  text : {
+    fontSize : 20,
+    backgroundColor : 'blue',
+    color : 'white',
+    padding : 10,
+    margin : 10,
+    height : 100,
+    width : 100,
+    textAlignVertical: 'center',
+    textAlign : 'center'
+
+  }
 });
 
 export default App;
