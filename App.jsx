@@ -5,55 +5,61 @@
  * @format
  */
 
-import { useState } from "react";
-import { View, Text, Button, StyleSheet, TextInput } from "react-native";
-
-
+import { useState } from 'react';
+import { View, Text, FlatList , StyleSheet } from 'react-native';
 
 function App() {
-  
-  const [name , setName] = useState("");
-  const [email , setEmail] = useState("");
-  const [password , setPassword] = useState("");
-  const [display , setDisplay] = useState(false);
-  
-  const clear = () => {
-    setDisplay(false);
-    setName("");
-    setEmail("");
-    setPassword("");
-  }
+  const users = [
+    {
+      id: 1,
+      name: 'Abhi',
+    },
+    {
+      id: 2,
+      name: 'Aishu',
+    },
+    {
+      id: 3,
+      name: 'Abhijna',
+    },
+    {
+      id: 4,
+      name: 'Amruta',
+    },
+    {
+      id: 5,
+      name: 'Amit',
+    },
+    {
+      id: 6,
+      name: 'Anay',
+    },
+  ];
 
   return (
     <View>
-      <Text style={{fontSize : 35, color: 'grey', textAlign : 'center'}}>Form</Text>
-      <TextInput style={styles.holder} placeholder="Name" onChangeText={(text) => setName(text)} value={name} />
-      <TextInput style={styles.holder} placeholder="Email" onChangeText={(text) => setEmail(text)} value={email} />
-      <TextInput style={styles.holder} placeholder="Password" onChangeText={(text) => setPassword(text)} value={password} secureTextEntry={true} />
-      <View style={{marginBottom : 10}}>
-        <Button title="Submit" onPress={()=>setDisplay(true)}  />
-      </View>  
-      <Button title="Clear" onPress={clear} />
-      <View>
-        {
-          display? 
-          <View>
-            <Text style={{fontSize:20}} >User Name is : {name}</Text>
-            <Text style={{fontSize:20}} >Email is : {email} </Text>
-            <Text style={{fontSize:20}} >Password is : {password} </Text>
-          </View> : null
-        }
-      </View>
-
+      <Text style={{ fontSize: 35, color: 'grey', textAlign: 'center' }}>
+        List
+      </Text>
+      <FlatList
+      data={users}
+      renderItem={({item})=><Text style={styles.item}>{item.name}</Text>}
+      keyExtractor={item=>item.id}
+      />
     </View>
   );
-    
 }
 
 const styles = StyleSheet.create({
-  holder : {fontSize: 18, color:'grey', borderWidth:2, borderColor: 'lightblue', borderRadius:10, margin:10, padding:5},
-})
-
-
+  item : {
+    fontSize : 24,
+    padding : 5,
+    backgroundColor : 'grey',
+    color : 'lightblue',
+    borderWidth : 1,
+    borderColor : 'skyblue',
+    margin : 5
+  }
+});
 
 export default App;
