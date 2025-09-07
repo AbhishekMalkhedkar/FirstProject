@@ -5,7 +5,7 @@
  * @format
  */
 
-import { View, Text , StyleSheet, ScrollView } from 'react-native';
+import { View, Text , StyleSheet, ScrollView, FlatList } from 'react-native';
 
 function App() {
   const users = [
@@ -69,15 +69,22 @@ function App() {
 
   return (
     <View>
-      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>Grid with Dynamic data</Text>
-      <View style={{flex:1, flexDirection:'row',flexWrap:'wrap'}}>
-      {
-        users.map((item) => <Text key={item.id} style={styles.text}>{item.name}</Text>)
-      }
-      
-      </View>
+      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>Component in Loop with FlastList</Text>
+      <FlatList
+      data={users}
+      renderItem={({item}) => <UserData item={item} /> }
+      />
     </View>
   );
+};
+
+const UserData = ({item}) => {
+  return (
+    <View style={styles.box}>
+        <Text style={styles.item}>{item.id}</Text>
+        <Text style={styles.item}>{item.name}</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -92,6 +99,19 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     textAlign : 'center'
 
+  },
+  item : {
+    fontSize : 24,
+    color : 'orange',
+    flex : 1,
+    margin : 2,
+    textAlign : 'center'
+  },
+  box : {
+    flexDirection : 'row',
+    borderWidth : 2,
+    borderColor : 'pink',
+    marginBottom : 10
   }
 });
 
