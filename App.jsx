@@ -5,87 +5,96 @@
  * @format
  */
 
-import { View, Text , StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, Text , StyleSheet, SectionList } from 'react-native';
 
 function App() {
   const users = [
     {
       id: 1,
       name: 'Abhi',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 2,
       name: 'Aishu',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 3,
       name: 'Abhijna',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 4,
       name: 'Amruta',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 5,
       name: 'Amit',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 6,
       name: 'Anay',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 7,
       name: 'Avinash',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 8,
       name: 'Amar',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 9,
       name: 'Akbar',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 10,
       name: 'Anthony',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 11,
       name: 'Akhil',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 12,
       name: 'Abhilash',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 13,
       name: 'Alok',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
     {
       id: 14,
       name: 'Akkarin',
+      data : ["PHP" , "React", "Angular", "Java"]
     },
   ];
 
+
   return (
     <View>
-      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>Component in Loop with FlastList</Text>
-      <FlatList
-      data={users}
-      renderItem={({item}) => <UserData item={item} /> }
+      <Text style={{ fontSize: 25, color: 'grey', marginTop : 5}}>Section List In RN</Text>
+      <SectionList
+      sections={users}
+      renderItem={({item}) => <Text style={{fontSize : 20, marginLeft : 20}}>{item}</Text>}
+      renderSectionHeader={({section : {name}}) => <Text style={{fontSize : 25, color : 'red', }}>{name}</Text> }
       />
     </View>
   );
 };
 
-const UserData = ({item}) => {
-  return (
-    <View style={styles.box}>
-        <Text style={styles.item}>{item.id}</Text>
-        <Text style={styles.item}>{item.name}</Text>
-    </View>
-  )
-}
+
 
 const styles = StyleSheet.create({
   text : {
@@ -100,19 +109,6 @@ const styles = StyleSheet.create({
     textAlign : 'center'
 
   },
-  item : {
-    fontSize : 24,
-    color : 'orange',
-    flex : 1,
-    margin : 2,
-    textAlign : 'center'
-  },
-  box : {
-    flexDirection : 'row',
-    borderWidth : 2,
-    borderColor : 'pink',
-    marginBottom : 10
-  }
 });
 
 export default App;
