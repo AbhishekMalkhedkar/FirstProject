@@ -6,47 +6,59 @@
  */
 
 import { useState } from 'react';
-import {  View, StyleSheet, Text, ActivityIndicator, TouchableOpacity  } from 'react-native';
+import { View, StyleSheet, Text, Button, Modal } from 'react-native';
 
 const App = () => {
 
-  const [showIndicator, setShowIndicator] = useState(false);
-  
-  const displayLoader = () => {
-    setShowIndicator(true);
-    setTimeout(() => {
-      setShowIndicator(false);
-    }, 3000);
-  }
-
+  const [showModal, setShowModal] = useState(false);
   return (
     <View style={styles.main}>
-      <Text style={{fontSize : 30}}>Activity Indicator</Text>
-      <ActivityIndicator size={80} color='red' animating={showIndicator} />
-      <TouchableOpacity onPress={displayLoader}>
-        <Text style={styles.btn}>Show</Text>
-      </TouchableOpacity>
-    </View> 
-  )
-}
+      <Modal
+      transparent={true}
+      visible={showModal}
+      animationType='slide'
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTxt}>Hello World</Text>
+            <Button title='Close Modal' onPress={() => setShowModal(false)} />
+          </View>
+        </View>
+      </Modal>
+      <View style={styles.btnContainer}>
+        <Button title="Open" onPress={() => setShowModal(true)} />
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  main : {
-    flex : 1,
-    alignItems : 'center',
-    justifyContent : 'center'
+  main: {
+    flex: 1,
   },
-  btn : {
-    fontSize : 20,
-    backgroundColor : 'skyblue',
-    padding : 10,
-    margin : 10,
-    borderRadius : 10
+  btnContainer: {
+    flex : 1,
+    justifyContent : 'flex-end'
+  },
+  centeredView : {
+    flex : 1,
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  modalView : {
+    backgroundColor : '#fff',
+    padding : 30,
+    borderRadius : 20,
+    shadowColor : 'black',
+    elevation : 5,
+
+  },
+  modalTxt : {
+    fontSize : 30,
+    marginBottom : 20
 
   }
-})
 
-
-
+});
 
 export default App;
