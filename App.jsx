@@ -5,51 +5,27 @@
  * @format
  */
 
-import React, { useState } from 'react';
-import {  View, StyleSheet, Text, TouchableOpacity  } from 'react-native';
+import { useState } from 'react';
+import {  View, StyleSheet, Text, ActivityIndicator, TouchableOpacity  } from 'react-native';
 
 const App = () => {
 
-  const [selectedRadio, setSelectedRadio] = useState(1);
-  const skills = [
-    {
-      id : 1,
-      name : "Java"
-    },
-    {
-      id : 2,
-      name : "PHP"
-    },
-    {
-      id : 3,
-      name : "JS"
-    },
-    {
-      id : 4,
-      name : "C"
-    },
-    {
-      id : 5,
-      name : "C++"
-    },
-  ]
+  const [showIndicator, setShowIndicator] = useState(false);
+  
+  const displayLoader = () => {
+    setShowIndicator(true);
+    setTimeout(() => {
+      setShowIndicator(false);
+    }, 3000);
+  }
 
   return (
     <View style={styles.main}>
-      {
-        skills.map((item,index) => 
-        <TouchableOpacity key={index} onPress={() => setSelectedRadio(item.id)}>
-          <View style={styles.radioWrapper}>
-            <View style={styles.radio}>
-              {
-                selectedRadio===item.id? <View style={styles.radioBg}></View> : null
-              }
-            </View>
-          <Text style={styles.radioTxt}>{item.name}</Text>
-         </View>
-      </TouchableOpacity>)
-      }
-      
+      <Text style={{fontSize : 30}}>Activity Indicator</Text>
+      <ActivityIndicator size={80} color='red' animating={showIndicator} />
+      <TouchableOpacity onPress={displayLoader}>
+        <Text style={styles.btn}>Show</Text>
+      </TouchableOpacity>
     </View> 
   )
 }
@@ -60,28 +36,12 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     justifyContent : 'center'
   },
-  radioTxt : {
+  btn : {
     fontSize : 20,
-    color : 'skyblue'
-  },
-  radio : {
-    height : 40,
-    width : 40,
-    borderColor : 'skyblue',
-    borderWidth : 2,
-    borderRadius : 20,
-    margin : 10
-  },
-  radioWrapper : {
-    flexDirection : 'row',
-    alignItems : 'center'
-  },
-  radioBg : {
     backgroundColor : 'skyblue',
-    height : 28,
-    width : 28,
-    borderRadius : 20,
-    margin : 4
+    padding : 10,
+    margin : 10,
+    borderRadius : 10
 
   }
 })
