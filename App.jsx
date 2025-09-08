@@ -5,59 +5,68 @@
  * @format
  */
 
-import React from 'react';
-import {  View, StyleSheet, Text, TouchableHighlight  } from 'react-native';
+import React, { useState } from 'react';
+import {  View, StyleSheet, Text, TouchableOpacity  } from 'react-native';
 
 const App = () => {
+
+  const [selectedRadio, setSelectedRadio] = useState(1)
+
   return (
     <View style={styles.main}>
-      <Text style={{fontSize : 30}}>TouchableHighlight</Text>
-      <TouchableHighlight>
-        <Text style={[styles.btn, styles.success]}>Sucess</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.btn, styles.primary]}>Primary</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.btn, styles.warning]}>Warning</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.btn, styles.error]}>Error</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={styles.btn}>Button</Text>
-      </TouchableHighlight>
-    </View>
+      <TouchableOpacity onPress={() => setSelectedRadio(1)}>
+        <View style={styles.radioWrapper}>
+          <View style={styles.radio}>
+            {
+              selectedRadio===1? <View style={styles.radioBg}></View> : null
+            }
+          </View>
+          <Text style={styles.radioTxt}>Radio 1</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setSelectedRadio(2)}>
+        <View style={styles.radioWrapper}>
+          <View style={styles.radio}>
+            {
+              selectedRadio===2? <View style={styles.radioBg}></View> : null
+            } 
+          </View>
+          <Text style={styles.radioTxt}>Radio 1</Text>
+        </View>
+      </TouchableOpacity>
+    </View> 
   )
 }
 
 const styles = StyleSheet.create({
   main : {
     flex : 1,
+    alignItems : 'center',
+    justifyContent : 'center'
   },
-  btn : {
-    backgroundColor : '#bbb',
-    color : '#fff',
-    fontSize : 24,
-    padding : 10,
-    margin : 10,
-    textAlign : 'center',
-    borderRadius : 10,
-    shadowColor : 'black',
-    elevation : 10,
-    shadowOpacity : 1
+  radioTxt : {
+    fontSize : 20,
+    color : 'skyblue'
   },
-  success : {
-    backgroundColor : 'green'
+  radio : {
+    height : 40,
+    width : 40,
+    borderColor : 'skyblue',
+    borderWidth : 2,
+    borderRadius : 20,
+    margin : 10
   },
-  primary : {
-    backgroundColor : 'blue'
+  radioWrapper : {
+    flexDirection : 'row',
+    alignItems : 'center'
   },
-  warning : {
-    backgroundColor : 'gold'
-  },
-  error : {
-    backgroundColor : 'red'
+  radioBg : {
+    backgroundColor : 'skyblue',
+    height : 28,
+    width : 28,
+    borderRadius : 20,
+    margin : 4
+
   }
 })
 
