@@ -10,30 +10,46 @@ import {  View, StyleSheet, Text, TouchableOpacity  } from 'react-native';
 
 const App = () => {
 
-  const [selectedRadio, setSelectedRadio] = useState(1)
+  const [selectedRadio, setSelectedRadio] = useState(1);
+  const skills = [
+    {
+      id : 1,
+      name : "Java"
+    },
+    {
+      id : 2,
+      name : "PHP"
+    },
+    {
+      id : 3,
+      name : "JS"
+    },
+    {
+      id : 4,
+      name : "C"
+    },
+    {
+      id : 5,
+      name : "C++"
+    },
+  ]
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity onPress={() => setSelectedRadio(1)}>
-        <View style={styles.radioWrapper}>
-          <View style={styles.radio}>
-            {
-              selectedRadio===1? <View style={styles.radioBg}></View> : null
-            }
-          </View>
-          <Text style={styles.radioTxt}>Radio 1</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => setSelectedRadio(2)}>
-        <View style={styles.radioWrapper}>
-          <View style={styles.radio}>
-            {
-              selectedRadio===2? <View style={styles.radioBg}></View> : null
-            } 
-          </View>
-          <Text style={styles.radioTxt}>Radio 1</Text>
-        </View>
-      </TouchableOpacity>
+      {
+        skills.map((item,index) => 
+        <TouchableOpacity key={index} onPress={() => setSelectedRadio(item.id)}>
+          <View style={styles.radioWrapper}>
+            <View style={styles.radio}>
+              {
+                selectedRadio===item.id? <View style={styles.radioBg}></View> : null
+              }
+            </View>
+          <Text style={styles.radioTxt}>{item.name}</Text>
+         </View>
+      </TouchableOpacity>)
+      }
+      
     </View> 
   )
 }
