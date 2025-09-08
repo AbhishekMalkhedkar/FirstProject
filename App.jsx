@@ -6,18 +6,27 @@
  */
 
 import React from 'react';
-import {  View, StyleSheet  } from 'react-native';
+import {  View, StyleSheet, Text, TouchableHighlight  } from 'react-native';
 
 const App = () => {
   return (
     <View style={styles.main}>
-      <View style={styles.box1}>
-        <View style={styles.InnerBox1}></View>
-        <View style={styles.InnerBox2}></View>
-        <View style={styles.InnerBox3}></View>
-      </View>
-      <View style={styles.box2}></View>
-      <View style={styles.box3}></View>
+      <Text style={{fontSize : 30}}>TouchableHighlight</Text>
+      <TouchableHighlight>
+        <Text style={[styles.btn, styles.success]}>Sucess</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.btn, styles.primary]}>Primary</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.btn, styles.warning]}>Warning</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.btn, styles.error]}>Error</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={styles.btn}>Button</Text>
+      </TouchableHighlight>
     </View>
   )
 }
@@ -26,33 +35,29 @@ const styles = StyleSheet.create({
   main : {
     flex : 1,
   },
-  box1 : {
-    flex : 2,
-    backgroundColor : 'red',
-    flexDirection : 'row'
+  btn : {
+    backgroundColor : '#bbb',
+    color : '#fff',
+    fontSize : 24,
+    padding : 10,
+    margin : 10,
+    textAlign : 'center',
+    borderRadius : 10,
+    shadowColor : 'black',
+    elevation : 10,
+    shadowOpacity : 1
   },
-  box2 : {
-    flex : 1,
+  success : {
     backgroundColor : 'green'
   },
-  box3 : {
-    flex : 1,
+  primary : {
     backgroundColor : 'blue'
   },
-  InnerBox1 : {
-    flex : 1,
-    backgroundColor : 'skyblue',
-    margin : 10
+  warning : {
+    backgroundColor : 'gold'
   },
-  InnerBox2 : {
-    flex : 1,
-    backgroundColor : 'grey',
-    margin : 10
-  },
-  InnerBox3 : {
-    flex : 1,
-    backgroundColor : 'orange',
-    margin : 10
+  error : {
+    backgroundColor : 'red'
   }
 })
 
