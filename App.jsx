@@ -5,66 +5,46 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
-import { View, Text, Button } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './components/Login';
-import Home from './components/Home';
 
-const Stack = createNativeStackNavigator();
+import {NavigationContainer} from "@react-navigation/native"
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
+import { Text, View } from "react-native";
+
+
+
+const Tab = createBottomTabNavigator();
 const App = () => {
 
-  const btnAction = () => {
-    console.warn("Btn Pressed");
-    
-  }
+  
 
 
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-      screenOptions={{
-             headerStyle : {
-              backgroundColor : 'grey',
-             },
-             headerTitleStyle : {
-              fontSize : 25
-             },
-             headerTintColor : 'skyblue'
+      <Tab.Navigator>
+        <Tab.Screen name="Login"  component={Login} />
+        <Tab.Screen name="SignUp"  component={SignUp} />
+      </Tab.Navigator>
 
-             }}
-      >
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerLeft : () =><Button title='Left' onPress={btnAction} />, 
-            headerRight : () =><Header />, 
-            title : ""
-          }}
-        />
-        <Stack.Screen name="Home" component={Home}
-        options={{
-             title : "Home", 
-             headerStyle : {
-              backgroundColor : 'lightblue',
-             },
-             headerTitleStyle : {
-              fontSize : 26
-             },
-             headerTintColor : 'grey'
-
-             }} />
-      </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 };
 
 
-const Header = () => {
+const Login = () => {
   return (
-    <Button title='btn' />
+    <View>
+      <Text>Login</Text>
+    </View>
+  )
+};
+
+
+const SignUp = () => {
+  return (
+    <View style={{flex : 1, justifyContent : 'center', alignItems : 'center'}}> 
+      <Text style={{fontSize : 25}}>SignUp</Text>
+    </View>
   )
 }
 
