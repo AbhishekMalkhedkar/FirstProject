@@ -8,9 +8,19 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './components/Login';
+import Home from './components/Home';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
+
+  const btnAction = () => {
+    console.warn("Btn Pressed");
+    
+  }
+
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -28,11 +38,15 @@ const App = () => {
         <Stack.Screen
           name="Login"
           component={Login}
-          
+          options={{
+            headerLeft : () =><Button title='Left' onPress={btnAction} />, 
+            headerRight : () =><Header />, 
+            title : ""
+          }}
         />
         <Stack.Screen name="Home" component={Home}
         options={{
-             title: 'User Home',
+             title : "Home", 
              headerStyle : {
               backgroundColor : 'lightblue',
              },
@@ -47,23 +61,17 @@ const App = () => {
   );
 };
 
-const Home = () => {
+
+const Header = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30 }}>Home Screen</Text>
-    </View>
-  );
-};
-const Login = props => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 30 }}>Login Screen</Text>
-      <Button
-        title="Go to Home Page"
-        onPress={() => props.navigation.navigate('Home')}
-      />
-    </View>
-  );
-};
+    <Button title='btn' />
+  )
+}
+
+
+
+
+
+
 
 export default App;
